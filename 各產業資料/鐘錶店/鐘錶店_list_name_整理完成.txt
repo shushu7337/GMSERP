@@ -1,0 +1,250 @@
+﻿ 編號		店家名稱
+789 >>> 中美鐘錶公司-南京店
+796 >>> 金生儀鐘錶博愛店 >>> －勞力士、百達翡麗、帝舵表特約零售商
+797 >>> 成笙鐘錶(新光三越台北站前店2F) >>> |推薦腕錶|精品錶|北歐NORDGREEN專賣|ALLYDENOVO
+805 >>> 慎昌鐘錶公司(博愛店) >>>  - 勞力士、百達翡麗、帝舵表特約零售商 ZONG CHONG WATCH CO., LTD.
+814 >>> CASIO卡西歐專賣店(三創店)
+817 >>> 台灣卡西歐(新光三越台北站前店)
+821 >>> Alexandre Christie (三創旗艦店)
+827 >>> 百貨公寓apartment store
+832 >>> 時間探索
+833 >>> 仲國精品電器有限公司&女孩愛旅行
+834 >>> 寶島鐘錶 萬華店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - Wanhua Branch - Official Tudor Retailer
+843 >>> 水晶鐘錶行 >>> （兼鐘錶修理）
+846 >>> 中美鐘錶公司大安店 >>>  - 勞力士特約經銷商 Chung Mei Watch Co. - Da An Branch - Official Rolex Retailer
+847 >>> 金生儀鐘錶忠孝店 >>>  - 勞力士及帝舵表特約零售商
+849 >>> 虹時鐘錶
+857 >>> 中美鐘錶公司統領店 >>>  勞力士及帝舵錶特約零售商 Chung Mei Watch Co. - Tonlin Branch - Official Rolex and Tudor Retailer
+863 >>> 星辰忠孝旗艦店
+869 >>> watch31時尚尖端有限公司
+873 >>> CHARRIOL夏利豪專櫃(SOGO忠孝店4樓)
+875 >>> 總督鐘錶
+887 >>> 慎昌鐘錶公司(忠孝店) >>>  - 勞力士及帝舵表特約零售商 ZONG CHONG WATCH CO., LTD.
+914 >>> 台灣迪生公司台北101店 >>>  - ROLEX 勞力士特約零售商
+912 >>> 金生儀鐘錶松智店 >>>  - ROLEX 勞力士特約零售商
+874 >>> ROLEX(忠孝復興店)
+880 >>> 金生儀 >>>  Patek Philippe 百達翡麗
+883 >>> Daniel Wellington 旗艦店
+904 >>> 瑞泰鐘錶行
+907 >>> 高登鐘錶(台北101百達翡麗專賣店)
+909 >>> 寶鴻堂鐘表台北旗艦店 >>> -勞力士及帝舵表特約零售商
+918 >>> OMEGA 歐米茄名品店(台北101店)
+925 >>> Tiffany & Co.(敦北店)
+930 >>> 鴻緯鐘錶 >>> /ROLEX/PANERAI
+965 >>> 永新鐘錶 >>> -勞力士及帝舵表特約零售商
+954 >>> 寶島鐘錶 内湖店 Formosa Nei Hu Branch
+958 >>> 寶格麗 微風廣場店
+957 >>> SEIKO信義威秀旗艦店
+993 >>> 十點九分鐘錶Watch9After10 >>> 複雜名錶維修Taipei WatchMakers
+990 >>> 京工鐘錶 >>> （古董錶買賣 手錶維修 更換電池）
+961 >>> Gucci(微風廣場店)
+1047 >>> INVICTA 西門旗艦店
+1048 >>> 金吉利商行 Day Love Watchmaker >>>  帝隆腕錶
+1049 >>> 邦緹鐘錶 >>> -手錶維修醫生
+1064 >>> ERICA STORE-成笙鐘錶 >>> (新光三越台北信義店A11-B1)|精品錶|CITIZEN星辰錶|SEIKO精工錶|FOSSIL錶|ERICA錶|北歐NORDGREEN形象櫃|OLIVIA BURTON錶
+1079 >>> Officine Panerai 沛納海 (101店)
+1080 >>> Roger Dubuis Taipei 101 Boutique
+1081 >>> Audemars Piguet Boutique Taipei A13
+1084 >>> CHANEL Taipei 101 Watch Boutique
+1095 >>> MONTBLANC Taipei 101 Store
+1096 >>> Van Cleef & Arpels
+1100 >>> Chopard Boutique
+1022 >>> 腕錶醫生 >>>  鐘錶維修
+1025 >>> 寶島鐘錶 淡水店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - DanShui Branch - Official Tudor Retailer
+1071 >>> CHARRIOL夏利豪(新光三越信義A8館)
+1139 >>> 寶島鐘錶 三重店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - Sanchong Branch - Official Tudor Retailer
+1144 >>> 寶島鐘錶 基隆店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - Keelung Branch - Official Tudor Retailer
+1119 >>> 國鍾鐘錶 >>>  咕咕鐘 老爺鐘 機械鐘 銷售、維修、保養。
+942 >>> Richard Mille Taipei(文華精品店)
+945 >>> 高登鐘錶
+960 >>> 吉雄鐘錶眼鏡
+972 >>> MONTBLANC(微風廣場店)
+982 >>> Chopard Boutique(台北晶華酒店)
+983 >>> MORRISK
+991 >>> Rado Switzerland(佳儀鐘錶)
+996 >>> 吉時鐘錶零件維修小舖
+1001 >>> CHANEL Jewelry & Watches Regent Galleria Store(台北晶華酒店)
+1006 >>> BULGARI Regent Galleria Store(台北晶華酒店)
+1017 >>> BOSS Menswear Shop(南西店)
+1026 >>> Tiffany & Co.(復興店)
+1057 >>> 翡仕鐘錶
+1067 >>> 駱駝時尚科技股份有限公司 台北101服務中心
+1068 >>> 台灣迪生公司台北101店 >>>  - 帝舵特約零售商
+1074 >>> Jaeger-LeCoultre(台北101店)
+1083 >>> 海瑞溫斯頓(台北101店)
+1102 >>> 鐘聯德國村精品之家
+1129 >>> DW(武昌店)
+1178 >>> 金昌鐘錶眼鏡行 >>> (24-Watch)
+1185 >>> CASIO(Globalmall板橋車站店)
+1190 >>> 新明鐘錶眼鏡
+1208 >>> 時間銀行鐘錶 >>>  (國際精品品牌鐘錶買賣鑑賞) 歡迎來電，預約特別鑑賞時間！
+1214 >>> 時之匠TimeMaster >>>  高級腕錶交流中心
+1222 >>> 時間玩家手錶店 >>> /精品錶/品牌錶/流行錶/兒童錶/鬧鐘/換電池修理保養/CASIO卡西歐手錶
+1228 >>> 寶島鐘錶(鶯歌分店)
+1259 >>> 翡仕鐘錶 (蘭城新月廣場店)
+1264 >>> 小林鐘錶 >>> (專業維修)
+1270 >>> KOSTRAP柯絲普 >>> 專業手工訂製錶帶
+1277 >>> PAIDEL 派迪爾鐘錶(新光三越桃園站前店)
+1294 >>> G-SHOCK OUTLET 林口三井店
+1313 >>> 寶環鐘錶
+1322 >>> 寶祥鐘錶公司 >>> -鐘錶批發桃園/ 時鐘批發/手錶批發/時鐘換電池/手錶換電池/調整手錶錶帶/鐘錶維修桃園/
+1341 >>> 翡仕鐘錶 (中壢SOGO)
+1397 >>> 晶時堂鐘錶 >>> -瑞士鐘錶品牌,新竹鐘錶行,日本鐘錶品牌,新竹進口鐘錶,歐美鐘錶代理品牌
+1398 >>> 寶島鐘錶新竹店 >>>  帝舵表特約零售商 Formosa Watch Co. - Hsin Chu Branch - Official Tudor Retailer
+1278 >>> 精準鐘錶專賣店
+1292 >>> BellaBia
+1293 >>> SEIKO(林口OUTLET店)
+1296 >>> FOSSIL(林口OUTLET店)
+1301 >>> Grace Select(滬尾藝文休閒園區店)
+1304 >>> APEM(日銓企業有限公司)
+1320 >>> Montblanc Boutique Taipei(新光三越天母店)
+1325 >>> 旭文有限公司 >>> /鐘錶買賣|手錶維修|音響出租|影音設備|卡拉OK設備
+1331 >>> 錶棧有限公司(家樂福經國店)
+1343 >>> CASIO(家樂福內壢店)
+1348 >>> SWATCH(華泰名品城店)
+1349 >>> 汎德名錶 >>> 桃園中壢高價收購勞力士、二手名錶交流買賣、勞力士回收
+1351 >>> MASTER(家樂福內壢店)
+1352 >>> 萬永名錶鑽石店
+1353 >>> 達爵鐘錶
+1354 >>> Swatch(華泰名品城店)
+1380 >>> Swatch(統領廣場店)
+1386 >>> 名星鐘錶眼鏡行 >>> /名星驗光所
+1389 >>> Lotus(家樂福內壢店)
+1390 >>> Omega(臺灣桃園國際機場店)
+1407 >>> 東海鐘錶眼鏡行 >>> /東海驗光所
+1411 >>> 寶島鐘錶 台中名店 >>>  - 勞力士及帝舵表特約零售商 Formosa Watch Co. - Taichung Branch - Official Rolex and Tudor Retailer
+1418 >>> 永生名錶珠寶交流中心(五權店) >>> -台中收購二手錶|高價收錶|二手錶買賣|手錶估價|勞力士收購|名錶收購|名錶買賣
+1424 >>> SEIKO(大魯閣新時代購物中心店)
+1431 >>> SEIKO(自強時計)
+1425 >>> 忠明鐘錶眼鏡 >>> 。忠明驗光所
+1427 >>> 精光堂時計(中友百貨櫃)
+1433 >>> 天文時創
+1437 >>> FOSSIL(中友百貨店)
+1449 >>> 公信精品 >>>  -GIA鑽石手錶交流中心
+1453 >>> 寶鴻堂鐘表台中五權旗艦店 >>> -勞力士及帝舵表特約零售商
+1455 >>> 永生名錶珠寶交流中心(文心店) >>> -台中收購二手錶|高價收錶|二手錶買賣|手錶估價|勞力士收購|名錶收購|名錶買賣
+1462 >>> 達人鐘錶(家樂福文心店) >>>  （買賣維修更換電池服務）
+1466 >>> ERICA STORE-成笙鐘錶(新光三越中港店) >>> |精品錶|CITIZEN星辰錶|SEIKO精工錶
+1468 >>> 鼎豐數位 >>> -姓名貼紙+卡通印章+鐘錶
+1469 >>> 時美齋鐘錶 >>>  -勞力士、百達翡麗及帝舵表特約零售商Shiy Mei Zai Watch Co
+1470 >>> 準時鐘錶 >>>  | 高價收購 | 收購勞力士 | ROLEX | PANERAI | OMEGA | HUBLOT | Cartier |機械錶 |名錶 | rolex二手錶
+1472 >>> Seiko勤美誠品綠園道形象店
+1475 >>> 三益鐘錶
+1490 >>> 葛洛麗雅國際有限公司(文心家樂福店)
+1494 >>> 協和號 >>>  (手錶 老物 雜貨 Vintage)
+1497 >>> ERICA STORE-成笙精品鐘錶 >>> -太平精品鐘錶|推薦鐘錶行|口碑鐘錶行|精品錶買賣|CITIZEN星辰錶|SEIKO精工錶
+1510 >>> 大倉鐘錶眼鏡 >>> /大倉驗光所
+1531 >>> 準確工房 >>> -眼鏡-鐘錶-刻印
+1535 >>> Daniel Wellington(新光三越台中中港店)
+1540 >>> 天文台鐘錶眼鏡
+1543 >>> CASIO卡西歐(台中遠東百貨店)
+1549 >>> TISSOT(新光三越台中店)
+1564 >>> 連漢名錶珠寶精品交流中心 >>> -高價收購 買賣二手 名錶 勞力士 鑽石 K金 黃金 翡翠 玉鐲 名牌包 各式精品
+1598 >>> 寶島鐘錶 彰化店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - Changhua Branch - Official Tudor Retailer
+1607 >>> 文龍鐘錶眼鏡行 >>> -大雅三和郵政代辦所
+1641 >>> 華盛頓鐘錶眼鏡
+1586 >>> CITIZEN(星辰錶)麗寶專櫃
+1588 >>> SEIKO(精工錶)麗寶購物中心專櫃
+1664 >>> 寶島鐘錶 台南名店 >>>  - 勞力士及帝舵表特約零售商 Formosa Watch Co. - Tainan Branch - Official Rolex and Tudor Retailer
+1665 >>> ERICA STORE-成笙鐘錶(新光三越台南西門店) >>> |推薦鐘錶專櫃|精品錶|CITIZEN星辰錶專賣
+1670 >>> 翡仕鐘錶(新光三越西門店二館)
+1567 >>> MORRISK(新光三越台中中港店)
+1585 >>> PYXIS(麗寶Outlet Mall店)
+1620 >>> 橘屋鐘表(大甲店)
+1685 >>> CHARRIOL夏利豪專櫃(新光三越台南新天地店)
+1697 >>> 巧格爾錶屋(台南育成總店)
+1699 >>> 時刻表鐘錶飾品
+1700 >>> 低調的奢華名錶交流 >>>  二手錶買賣
+1703 >>> CASIO翡仕鐘錶(新光三越-西門店)
+1705 >>> 綺華麗鐘錶(台南西門店)
+1724 >>> 中美鐘錶眼鏡
+1843 >>> 寶島鐘錶 嘉義名店 >>>  - 勞力士及帝舵表特約零售商 Formosa Watch Co. - Chiayi Branch - Official Rolex and Tudor Retailer
+1858 >>> 寶島鐘錶 鳳山店 >>>  - 帝舵表特約零售商 Formosa Watch Co. - Fengshan Branch - Official Tudor Retailer
+1874 >>> 阿麥鐘錶工作室
+1902 >>> 勝興鐘錶專業維修買賣店
+1910 >>> 宏崑時計 >>> -高雄便宜手錶CASIO,CITIZEN,SEIKO鬧鐘
+1932 >>> 港都春天手錶專賣店 >>>  TISSOT,SEIKO,CITIZEN,MIDO,CASIO
+1938 >>> 寶島鐘錶 高雄名店 >>>  - 勞力士、百達翡麗及帝舵表特約零售商 Formosa Watch Co. - Kaohsiung Branch - Official Rolex, Patek Philippe and Tudor Retailer
+1940 >>> 寶儷鐘錶
+1941 >>> 大銘高級腕錶
+1949 >>> 正泰鐘錶 >>>  - 勞力士及帝舵表特約零售商 Cheng Tai Watch Co. - Official Rolex and Tudor Retailer
+2066 >>> 翡仕鐘錶 (屏東環球店)
+2043 >>> 錦益鐘錶行
+2045 >>> 信惠鐘錶行（大寶國際精品公司）
+1759 >>> Tiffany & Co.(新光三越台南新天地店)
+1847 >>> 新豐鐘錶眼鏡
+1855 >>> MORRISK(現代鐘錶)
+1856 >>> MORRISK(義美鐘錶公司)
+1857 >>> LONGINES(義美鐘錶公司)
+1890 >>> 寶昌鐘錶
+1891 >>> 寶島鐘錶 大昌店
+1946 >>> ROLEX(寶島鐘錶名店)
+1951 >>> OMEGA Boutique - Qianjin District(漢神百貨店)
+1953 >>> Tiffany & Co.(漢神百貨店)
+1957 >>> Fendi(漢神百貨店)
+1958 >>> Chaumet(漢神百貨店)
+1961 >>> 精光堂時計(高雄大遠百店)
+1963 >>> 駱駝時尚科技股份有限公司 高雄服務中心 >>>  (預約賞錶)
+1976 >>> 高登鐘錶(高雄義享形象店)
+1977 >>> IWC萬國錶(高雄義享專賣店)
+1978 >>> Panerai沛納海(高雄義享專賣店)
+1979 >>> 藝錶堂精品館
+1992 >>> Seiko(夢時代店)
+1995 >>> Watchs World(夢時代店)
+1996 >>> 愛其華・Ogival(夢時代店)
+1999 >>> Swatch(夢時代店)
+2001 >>> RHYTHM(夢時代店)
+2002 >>> WSI(夢時代店)
+2004 >>> Calvin Klein(夢時代店)
+2014 >>> One Week腕圍刻 >>>  複合式腕錶精品
+2026 >>> Montblanc(夢時代店)
+2039 >>> Swatch(新光三越高雄左營店)
+2047 >>> Swatch(漢神巨蛋購物廣場店)
+2071 >>> OMEGA Boutique(漢神巨蛋購物廣場店)
+2076 >>> CHARRIOL夏利豪專櫃(漢神巨蛋店)
+2077 >>> Montblanc(漢神巨蛋店)
+2078 >>> Georg Jensen (漢神巨蛋店)
+2079 >>> LOUIS VUITTON (漢神巨蛋店)
+2093 >>> 億時計手錶專賣店
+2108 >>> 領航鐘錶 >>>  手錶專賣 專業維修
+837 >>> 台灣卡西歐(新光三越南西店三館)
+860 >>> 太品儀名錶 >>> @男士品牌高級手錶，瑞士品牌錶，台北機械錶推薦，台北石英錶推薦，勞力士線上購買，台北手錶保固維護，百年靈精品手錶，沛納海品牌手錶，萬國錶，崑崙名牌手錶，帝舵手錶，萬寶龍手錶，台北精品錶去哪買，台北精品手裱推薦，台北高級錶實體門市
+939 >>> Piaget 伯爵(微風廣場)
+951 >>> 綺華麗專櫃(新光三越A8店)
+952 >>> Vacheron Constantin(台北101)
+959 >>> Swatch(台北101)
+966 >>> 伯爵(台北101)
+973 >>> Chaumet(微風廣場)
+979 >>> 翡仕鐘錶 (美麗華購物中心)
+987 >>> Daniel Wellington(誠品生活南西店)
+1005 >>> Chaumet(台北晶華酒店)
+1075 >>> Breguet Boutique Taipei(台北101)
+1077 >>> Hublot Taipei Boutique(台北101)
+1091 >>> Louis Vuitton(台北101)
+1092 >>> FENDI 台北101店
+1097 >>> Salvatore Ferragamo(台北101)
+1099 >>> Tiffany & Co.(台北101)
+1105 >>> Georg Jensen(新光三越A8店)
+1107 >>> Chaumet(台北101)
+1138 >>> 中美鐘錶行 >>> -新北 三重/鐘錶行/勞力士維修/鐘錶專賣/精工錶 SEIKO/東方錶ORIENT/三宅ㄧ生 卡西歐 G-SHOCK門市 推薦
+1169 >>> 新萬國鐘錶
+1227 >>> Omega(SOGO復興館)
+1261 >>> 金明鐘錶眼鏡行
+1280 >>> Daniel Wellington(統領廣場Tonlin Plaza)
+1295 >>> CITIZEN(林口OUTLET)
+1396 >>> Hour Passion(華泰名品城)
+1441 >>> Swatch(大魯閣新時代購物中心)
+1486 >>> 精光堂時計(台中大遠百櫃)
+1509 >>> Audemars Piguet(台中大遠百)
+1528 >>> 精光堂時計(廣三SOGO專櫃)
+1551 >>> Swatch(中友百貨)
+1561 >>> Officine Panerai(台中大遠百櫃)
+1601 >>> 金池鐘錶行
+1633 >>> 光瑩眼鏡鐘錶
+1762 >>> Georg Jensen(新光三越台南新天地)
+1985 >>> 世宏鐘錶隱形眼鏡
+1987 >>> 協侊鐘錶眼鏡
+2000 >>> CITIZEN(夢時代購物中心)
+2003 >>> Longines(夢時代購物中心)
+2037 >>> Swatch(義大世界購物廣場)
+2038 >>> Hour Passion(義大世界購物廣場)
