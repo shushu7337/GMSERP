@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<!-- datepicker -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+    
+{% endblock %}
+
+
+<!-- body -->
+{% block body %}
+<nav class="mt-5"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Index</a></li>
+        <li class="breadcrumb-item"><a href="/TargetTag">搜尋關鍵字管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% if tt_no == 0 %}新增{% else %}編輯{% endif %}</li>
+    </ol>
+</nav>
+
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="input-group mt-3">
+        <span class="input-group-text">目標關鍵字編號</span>
+        <input readonly type="text" class="form-control" placeholder="自動產生" value="{% if aTargetTag['tt_no'] %}{{aTargetTag['tt_no']}}{% endif %}" name="tt_no" >
+    </div>
+    <div class="input-group mt-3 tag-name-row" id="tag_row_0">
+        <span class="input-group-text">目標關鍵字名稱</span>
+        <input type="text" class="form-control" placeholder="請輸入目標關鍵字名稱" value="{% if aTargetTag['tag_name'] %}{{aTargetTag['tag_name']}}{% endif %}" name="tag_name[]" >
+        <span class="input-group-text">啟用狀態</span>
+        <div class="form-check form-switch mt-2" style="margin-left: 20px;margin-right: 20px;">
+            {% if aTargetTag['status'] %}
+                <input type="checkbox" name="status[]" class="form-check-input" {%if aTargetTag['status'] == 1%}checked {% endif %}>
+            {% else %}
+                <input type="checkbox" name="status[]" class="form-check-input" value="0">
+            {% endif %}
+        </div>
+        {% if tt_no == 0 %}
+        <button:button id="add_tag" class="btn btn-outline-secondary">新增欄位</button:button>
+        {% endif %}
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="tt_industry">產業</span>
+        <select name="industry_no" id="industry" class="form-select">
+            {% if aTargetTag['industry_no'] %}
+                {% for allIndustry in aAllIndustry %}
+                <option value="{{allIndustry['industry_no']}}" {% if aTargetTag['industry_no']==allIndustry['industry_no'] %} selected{% endif
+                    %}>{{ allIndustry['industry_name'] }}
+                </option>
+                {% endfor %}
+            {% else %}
+                <option><--請選擇產業--></option>
+                {% for allIndustry in aAllIndustry %}
+                <option value="{{allIndustry['industry_no']}}">{{ allIndustry['industry_name'] }}
+                </option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+        <button type="submit" class="btn btn-outline-secondary">送出</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary">清除</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary" onclick="window.history.go(-1)">取消</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<!-- datepicker -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script src="http://cdn.craig.is/js/rainbow-custom.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.datetimepicker.setLocale('pt-EN');
+        $('#datetimepicker').datetimepicker({
+            format:'Y/m/d H:i:s'
+        });
+    });
+    
+    $("#add_tag").on('click', function () {
+            // Adding a row inside the tbody.
+            var row_elems = $('.tag-name-row')
+            var row_num = $('.tag-name-row').length
+            var maxxium = 0
+
+            for (let i = 0; i < row_num; i++) {
+                row_id = row_elems[i].id
+                row_str_len = row_elems[i].id.length
+                last_id = row_id.slice(8, row_str_len)
+
+                if (maxxium <= parseInt(last_id)) {
+                    maxxium = parseInt(last_id)
+                }
+                // 取得當前最後ㄧ欄位
+                var elem = $('#tag_row_' + maxxium)
+                // 欲新增欄位id
+                var next_num = parseInt(maxxium) + 1
+            }
+
+            elem.after(
+                `
+            <div class="input-group mt-3 tag-name-row" id="tag_row_${next_num}">
+                <span class="input-group-text">目標關鍵字名稱</span>
+                <input class="form-control" placeholder="請輸入目標關鍵字名稱" name="tag_name[]">
+                <span class="input-group-text">啟用狀態</span>
+                <div class="form-check form-switch mt-2" style="margin-left: 20px;margin-right: 20px;">
+                    <input class="form-check-input" type="checkbox" role="switch" value="0" name="status[]" >
+                </div>
+                <button class="btn btn-outline-danger remove"   style="padding-left:23px;" type="button" id="${next_num}" onclick="remove_row($(this))">Remove</button>
+            </div>
+            `);
+        })
+
+        function remove_row(res) {
+            // remove row by dynamic adding
+            $div = res.closest('div')
+            $div.remove()
+            }
+
+        $('form').submit(function () {
+            // resolve checkbox return value by submit
+                $(this).find('input[type="checkbox"]').each(function () {
+                    var checkbox = $(this);
+                    if (checkbox.is(':checked')) {
+                        checkbox.attr('value', '1');
+                    } else {
+                        checkbox.after().append(checkbox.clone().attr({ type: 'hidden', value: 0 }));
+                        checkbox.prop('disabled', true);
+                    }
+                })
+            });
+</script>
+
+{% endblock %}

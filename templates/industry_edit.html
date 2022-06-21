@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<!-- datepicker -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+    
+{% endblock %}
+
+
+<!-- body -->
+{% block body %}
+<nav class="mt-5"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Index</a></li>
+        <li class="breadcrumb-item"><a href="/Industry">產業管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% if industry_no == 0 %}新增{% else %}編輯{% endif %}</li>
+    </ol>
+</nav>
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="industry_no">產業編號</span>
+        <input readonly type="text" class="form-control" placeholder="自動產生" value="{% if aIndustry['industry_no'] %}{{aIndustry['industry_no']}}{% endif %}" name="industry_no" >
+    </div>
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="industry_name">產業名稱</span>
+        <input type="text" class="form-control" placeholder="請輸入產業名稱" value="{% if aIndustry['industry_name'] %}{{aIndustry['industry_name']}}{% endif %}" name="industry_name" >
+    </div>
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="sk_status">啟用狀態</span>
+        <div class="form-check form-switch mt-2">
+            {% if aIndustry['status'] %}
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="margin-left:auto;"
+                checked value="1" checked name="status">
+            {% else %}
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="margin-left:auto;"
+                value="1" name="status">
+            {% endif %}
+        </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+        <button type="submit" class="btn btn-outline-secondary">送出</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary">清除</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary" onclick="window.history.go(-1)">取消</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<!-- datepicker -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script src="http://cdn.craig.is/js/rainbow-custom.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.datetimepicker.setLocale('pt-EN');
+        $('#datetimepicker').datetimepicker({
+            format:'Y/m/d H:i:s'
+        });
+    });
+</script>
+
+{% endblock %}

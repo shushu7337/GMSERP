@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block body %}
+
+<div class="container mt-3 ">
+    <div class="row justify-content-start">
+        <!-- 專案管理 -->
+        <div class="col-4 mt-md-4">
+            <a href="/Project" type="button" class="btn btn-outline-success" role="button">專案管理</a>
+        </div>
+        
+        <!-- 關鍵字管理 -->
+        <div class="col-4 mt-md-4">
+            <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                關鍵字管理
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" href="/SearchKey" style="color:inherit;">Google Maps 搜尋 Tag</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="/TargetTag" style="color:inherit;">Google Maps 目標 Tag</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 產業管理 -->
+        <div class="col-4 mt-md-4">
+            <a href="/Industry" type="button" class="btn btn-outline-success" role="button">產業管理</a>
+        </div>
+
+        <!-- Tag -->
+        <div class="col-4 mt-md-4">
+            <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                任務管理
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li>
+                    <a class="dropdown-item" href="/ListsDataTc" style="color:inherit;">清單任務條件</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="/ListsTask" style="color:inherit;">清單任務</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="/ScoreTc" style="color:inherit;">評分任務條件</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="/ScoreTask" style="color:inherit;">評分任務</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 資料處理 -->
+        <div class="col-4 mt-md-4">
+            <a href="/Dataprocess" type="button" class="btn btn-outline-success" role="button">資料處理</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<!-- datepicker -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+{% endblock %}
+
+
+<!-- body -->
+{% block body %}
+<nav class="mt-5"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Index</a></li>
+        <li class="breadcrumb-item"><a href="/ScoreTc">任務條件管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% if s_tc_no == 0 %}新增{% else %}編輯{% endif %}</li>
+    </ol>
+</nav>
+
+<form method="POST" enctype="multipart/form-data" id="form">
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="s_tc_no">評分任務條件編號</span>
+        <input readonly type="text" class="form-control" placeholder="自動產生" value="{% if aScoreTc['s_tc_no'] %}{{aScoreTc['s_tc_no']}}{% endif %}" name="s_tc_no" >
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text">評分任務條件-資料庫</span>
+        <select name="data_source" id="data_source" class="form-select" required onchange="ShowProject(this)">
+            <option >
+                <-- 請選擇專案 -->
+            </option>
+            <option value="Main">主庫</option>
+            <option value="GoogleList">Google List</option>
+        </select>
+    </div>
+
+    <div class="input-group mt-3" id="project" style="display: none;">
+        <span class="input-group-text">評分任務條件-專案</span>
+        <select id="project_select" name="project_no" class="form-select" required onchange="ShowItemInfo(this)">
+        </select>
+    </div>
+
+    <div class="input-group mt-5" id="data_info" style= "display: none;">
+        <div class="input-group mt-3" >
+            <span class="input-group-text">Google評分資料</span>
+            <input type="text" class="text-center form-control text-danger" id="total_lists_data" disabled>
+
+            <span class="input-group-text">待取得Google評分</span>
+            <input type="text" class="text-center form-control text-danger" id="stand_by_google_score" disabled>
+
+            <span class="input-group-text">未取得Google評分</span>
+            <input type="text" class="text-center form-control text-danger" id="total_google_score" disabled>
+        </div>
+        <div class="input-group mt-3" >
+            <span class="input-group-text">取得最舊Google評分資料日期:</span>
+            <input type="text" class="text-center form-control text-danger" id="oldest_data_time" disabled>
+
+            <span class="input-group-text">最新Google評分資料日期:</span>
+            <input type="text" class="text-center form-control text-danger" id="newest_data_time" disabled>
+        </div>
+    </div>
+
+    <div class="input-group mt-3" id="execFunc" style="display: none;">
+        <span class="input-group-text">功能</span>
+        <select name="selectFunc" id="selectFunc" class="form-select" required onchange="execFunc(this)"></select>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+        <button type="submit" class="btn btn-outline-secondary">送出</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary">清除</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary" onclick="window.history.go(-1)">取消</button>
+    </div>
+
+</form>
+{% endblock %}
+
+{% block javascript %}
+<!-- datepicker -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script src="http://cdn.craig.is/js/rainbow-custom.min.js"></script>
+
+<script>
+    var score_data = {}
+    $(function () {
+            $("#datetimepicker").datepicker({
+                dateFormat: "yy-mm-dd", //修改顯示順序
+            });
+        });
+    function ShowProject() {
+        // 顯示任務資訊
+        var data_source = $("select[id='data_source']").val()
+        var t_url = "/Ajax/getProject"
+
+        $.ajax({
+            url: t_url,
+            type: "POST",
+            data: {
+                "data_source": data_source,
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#project').css('display',"")
+                $('#project_select').html('')
+                // 動態增加 select element
+                elem0 = "<option><-- 請選擇專案 --></option>"
+                $('#project_select').append(elem0)
+
+                res.forEach(e => {
+                    elem1 = "<option value='"+ e['item_no'] +"'>"+ e['item_name'] + "</option>"
+                    $('#project_select').append(elem1)
+                });
+            }
+        })
+    }
+
+    function ShowItemInfo() {
+        // 該專案 評分項目資訊
+        var data_source = $("select[id='data_source']").val()
+        var item_no = $("#project_select :selected").val()
+        var item_name = $("#project_select :selected").text()
+        var t_url = "/Ajax/getScoreInfo"
+
+        $.ajax({
+            url: t_url,
+            type: "POST",
+            data: {
+                "item_no": item_no,
+                "item_name": item_name,
+                "data_source": data_source,
+            },
+            dataType: 'json',
+            success: function (res) {
+                // return 該科 or 專案 取得評分項目資訊
+                $("span.badge.rounded-pill").remove()
+                $("#data_info").prepend("<span class='mx-auto badge rounded-pill bg-info text-dark'>"+item_name+"</span>")
+                $("#data_info").css('display','')
+
+                // 已完成取得評分
+                $("#total_lists_data").val(res['total_lists_data'])
+                // 待取得評分(符合Target Tag者)
+                $("#stand_by_google_score").val(res['stand_by_google_score'])
+                // 尚未取得評分(已被選入lists_data_google_score_tc中)
+                $("#total_google_score").val(res['total_google_score'])
+                // 最舊評分資料日期
+                $("#oldest_data_time").val(res['oldest_data_time'])
+                // 最新評分資料日期
+                $("#newest_data_time").val(res['newest_data_time'])
+
+                score_data['total_lists_data'] = res['total_lists_data']
+                score_data['stand_by_google_score'] = res['stand_by_google_score']
+                score_data['total_google_score'] = res['total_google_score']
+                score_data['newest_data_time'] = res['newest_data_time']
+
+                // 執行功能顯示&判斷
+                $("#execFunc").css('display', '')
+                $("#selectFunc").html('')
+                $("#selectFunc").append("<option><-- 請選擇執行功能 --></option>")
+                if ((res['total_lists_data'] != 0) && (res['total_google_score'] != 0)) {
+                    elem1 = "<option value='新增多筆'>新增多筆</option><option value='更新多筆'>更新多筆</option><option value='新增單筆'>新增單筆</option><option value='更新單筆'>更新單筆</option>"
+                    $("#selectFunc").append(elem1)
+                } else if (res['total_google_score'] == 0) {
+                    elem1 = "<option value='更新多筆'>更新多筆</option><option value='更新單筆'>更新單筆</option>"
+                    $("#selectFunc").append(elem1)
+                } else if (res['total_lists_data'] == 0) {
+                    elem1 = "<option value='新增多筆'>新增多筆</option><option value='新增單筆'>新增單筆</option>"
+                    $("#selectFunc").append(elem1)
+                }
+            }, 
+            error: function(res){
+                alert('請先新增target tag資料')
+                location.href = "./TargetTag?action=add&tt_no=0"
+            }
+        })
+    }
+
+    function execFunc() {
+        // 選擇執行功能, 並增加執行功能相關element
+        var data_source = $("select[id='data_source']").val()
+        var selectFunc = $("#selectFunc :selected").val()
+
+        $("#selectFunc").nextAll().remove()
+        if (selectFunc == '新增單筆') {
+            if (data_source == 'Main') {
+                $("#selectFunc").after("<span class='input-group-text'>新增 co_id</span><input class='form-control' name='target_no' placeholder='請輸入 co_id '>")
+            } else {
+                $("#selectFunc").after("<span class='input-group-text'>新增 gs_no</span><input class='form-control' name='target_no' placeholder='請輸入 gs_no '>")
+            }
+        } else if (selectFunc == '更新單筆') {
+            if (data_source == 'Main') {
+                $("#selectFunc").after("<span class='input-group-text'>更新 co_id</span><input class='form-control' name='target_no' placeholder='請輸入 co_id '>")
+            } else {
+                $("#selectFunc").after("<span class='input-group-text'>更新 gs_no</span><input type='text' class='form-control' name='target_no' placeholder='請輸入 gs_no '>")
+            }
+        } else if (selectFunc == '新增多筆') {
+            $("#selectFunc").after("<span class='input-group-text'>新增數量</span><input class='form-control' type='text' placeholder='請輸入新增數量' name='target_num'>")
+        } else if (selectFunc == '更新多筆') {
+            $("#selectFunc").after("<span class='input-group-text' id='target_datetime'>指定更新日期</span><input id='datetimepicker' type='text' class='form-control' value='' placeholder='請指定資料更新日期' name='target_date'>")
+
+            $("#datetimepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
+            // $.datetimepicker.setLocale('pt-EN');
+            // $('#datetimepicker').datetimepicker({
+            //     format: 'Y-m-d H:i:s'
+            // });
+        }
+    }
+
+    $('#form').submit(function(){
+        // 檢查送出表單參數
+        let target_num = $("input[name='target_num']").val()
+        let total_num = $("#total_lists_data").val()
+        let datetime = $("#datetimepicker").val()
+        let selectFunc = $("#selectFunc :selected").val()
+
+        if (selectFunc == '更新多筆') {
+            // 判斷輸入天數資料, 未輸入天數=>預設值為半年前
+            // 未輸入天數
+            if (datetime == ''){
+                datetime = new Date()
+                // 操作當天前180天
+                datetime = datetime.setDate(datetime.getDate()-180)
+                datetime = new Date(datetime)
+                datetime = datetime.toISOString().split('T')[0]
+                $('#datetimepicker').val(datetime)
+            }
+
+            newest_date = Date.parse(score_data['newest_data_time'])
+            pick_date = Date.parse(datetime)
+
+            // 比對: 選取日期 > 最新資料日期 => 重選
+            while (pick_date > newest_date) {
+                $("#datetimepicker").focus()
+                let date = score_data['newest_data_time'].split(" ")
+
+                alert(`無符合該日期資料\n資料最後更動日期:  ${date[0]}`)
+                return false
+            }
+        }else if ((selectFunc == '更新單筆') || (selectFunc == '新增單筆')){
+            while ((target_num != '') && (target_num == '0') || (target_num > total_num)){
+                $("input[name='target_num']").focus()
+                alert("請輸入正確筆數")
+                return false
+            }
+        }
+    })
+</script>
+
+{% endblock %}

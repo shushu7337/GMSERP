@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMSERP</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tabulator.min.css') }}">
+    <!-- style -->
+
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+<!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand " href="/">GMSERP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/Index" style="color:inherit;">首頁</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Project" style="color:inherit;">專案管理</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Industry" style="color:inherit;">產業管理</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="color:inherit;">
+                            關鍵字管理
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/SearchKey" style="color:inherit;">搜尋關鍵字</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/TargetTag" style="color:inherit;">目標Tag</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="color:inherit;">
+                            任務管理
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/ListsDataTc" style="color:inherit;">清單任務條件</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/ListsTask"
+                                    style="color:inherit;">清單任務</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/ScoreTc" style="color:inherit;">評分任務條件</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/ScoreTask"
+                                    style="color:inherit;">評分任務</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/Dataprocess" style="color:inherit;">資料處理</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- container -->
+    <div class="container font-monospace">
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- footer -->
+    <footer class="d-flex flex-wrap justify-content-end align-items-center py-2 my-2 px-4 border-top fixed-bottom">
+        <div class="d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+            </a>
+            <span class="text-muted">&copy; 2021 Shu, Inc</span>
+        </div>
+    </footer>
+
+    <!-- popper -->
+    <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+    <!-- bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <!-- tabulator -->
+    <script src="{{ url_for('static', filename='js/tabulator.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+                var url = $(location).attr('href')
+                
+                $(".nav-link").each(
+                    function () {
+                        var href = $(this).attr("href")
+                        if (url.includes(href)){
+                            $(".nav-link[href='"+href+"']").addClass("active")
+                        }else if (url == 'http://127.0.0.1:5000/'){
+                            $(".nav-link[href='/Index']").addClass("active")
+                        }
+                    }
+                )
+            })
+    </script>
+    <!-- other plugin -->
+    {% block javascript %}{% endblock %}
+</body>
+
+</html>

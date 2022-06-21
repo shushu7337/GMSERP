@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<!-- datepicker -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+{% endblock %}
+
+<!-- body -->
+{% block body %}
+<nav class="mt-5"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Index</a></li>
+        <li class="breadcrumb-item"><a href="/ListsDataTc">任務條件管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% if l_tc_no == 0 %}新增{% else %}編輯{% endif %}</li>
+    </ol>
+</nav>
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="l_tc_no">任務條件編號</span>
+        <input readonly type="text" class="form-control" placeholder="自動產生" value="{% if aListsDataTc['l_tc_no'] %}{{aListsDataTc['l_tc_no']}}{% endif %}" name="l_tc_no" >
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text">任務條件-專案</span>
+        <select name="project_no" id="project" class="form-select" required>
+            <option>
+                <-- 請選擇專案 -->
+            </option>
+            {% for allProject in aAllProject %}
+            <option value="{{allProject['project_no']}}">{{ allProject['project_name'] }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text">任務條件-產業</span>
+        <select name="industry_no" id="industry" class="form-select" onchange="ShowSearchKey(this)" required>
+                <option>
+                    <-- 請選擇產業 -->
+                </option>
+                {% for allIndustry in aAllIndustry %}
+                <option value="{{allIndustry['industry_no']}}">
+                    {{ allIndustry['industry_name'] }}
+                </option>
+                {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-group mt-3" id="search_key" style="display: none;">
+        <span class="input-group-text" id="search_key1">任務條件-搜尋關鍵字</span>
+        <div id="search_key_check"></div>        
+    </div>
+    
+    <div class="input-group mt-3">
+        <span class="input-group-text">任務條件-縣市</span>
+        <select name="c_no" id="city" class="form-select" required onchange="ShowRegion(this)">
+            <option disabled value="" selected hidden>
+                <-- 請選擇縣市 -->
+            </option>
+            {% for City in aAllCity %}
+            <option value="{{City['c_no']}}">
+                {{ City['c_name'] }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="input-group mt-3" id="region" style="display: none;">
+        <span class="input-group-text">任務條件-行政區</span>
+        <select name="r_no" id="region_select" class="form-select" required onchange="ShowStreet(this)" multiple></select>
+    </div>
+
+    <div class="input-group mt-3" id="street" style="display: none;">
+        <span class="input-group-text">任務條件-街道</span>
+        <select name="s_no" id="street_select" class="form-select" multiple></select>
+    </div>
+
+    <!-- <div class="input-group mt-3">
+        <span class="input-group-text" id="sk_status">啟用狀態</span>
+        <div class="form-check form-switch mt-2">
+            {% if aListsDataTc['status'] %}
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="margin-left:auto;"
+                checked value="1" checked name="status">
+            {% else %}
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="margin-left:auto;"
+                value="1" name="status">
+            {% endif %}
+        </div>
+    </div> -->
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+        <button type="submit" class="btn btn-outline-secondary">送出</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary">清除</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary" onclick="window.history.go(-1)">取消</button>
+    </div>
+
+</form>
+{% endblock %}
+
+{% block javascript %}
+<!-- datepicker -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script src="http://cdn.craig.is/js/rainbow-custom.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.datetimepicker.setLocale('pt-EN');
+        $('#datetimepicker').datetimepicker({
+            format:'Y/m/d H:i:s'
+        });
+    });
+
+    // 顯示 Search Tag 資料
+    function ShowSearchKey() {
+        var industry_no = $("select[id='industry']").val()
+        var t_url = "/Ajax/getSearchKey"
+
+        $.ajax({
+            url: t_url,
+            type: "POST",
+            data: {
+                "industry_no": industry_no,
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#search_key').css('display',"block")
+                $('#search_key_check').html('')
+                res.forEach(e => {
+                    elem1 = "<input style='margin-left: 20px;' class='form-check-input mr-1' type='checkbox' id='sk_no_" + e['sk_no'] + "' value='"+ e['sk_no'] +"' name='search_key' required>"
+                    elem2 = "<label style='margin-left: 5px;' class='form-check-label' for='sk_no_" + e['sk_no'] + "'> " + e['sk_name'] + " </label>"
+
+                    $('#search_key_check').append(elem1, elem2)
+                });
+
+                if (res) {
+                    $('#search_key_check').append("<input style='margin-left: 20px;' class='form-check-input mar-1' type='checkbox' id='sk_no_all' name='search_key' onclick='toggle(this)' required> <label style='margin-left: 5px;' class='form-check-label' for='sk_no_all' >全選</label>")
+                }
+                $(function(){
+                    var requiredCheckbox = $('#search_key_check :checkbox[required]');
+                    requiredCheckbox.change(function(){
+                        if (requiredCheckbox.is(':checked')) {
+                            requiredCheckbox.removeAttr('required');
+                        } else {
+                            requiredCheckbox.attr('required', 'required')
+                        }
+                    })
+                })
+            }
+        })
+    }
+
+    // 顯示行政區資料
+    function ShowRegion() {
+        var c_no = $("select[id='city']").val()
+        var c_city = $("select[id='city'] option:selected").text()
+        var t_url = "/Ajax/getRegion"
+
+        $.ajax({
+            url: t_url,
+            type: "POST",
+            data: {
+                "c_no": c_no,
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#region').css('display', '')
+                $('#region_select').html('')
+
+                elem1 = "<option disabled value='' selected hidden><-- 請選擇 "+ c_city +" 行政區 -->"
+                elem0 = ""
+                res.forEach(e => {
+                    elem2 = "<option value='"+ e['r_no'] +"'>"+ e['r_name'] +"</option>"
+                    elem0 += elem2
+                })
+                $('#region_select').append(elem1 + elem0)
+            }
+        })
+    }
+
+    // 顯示街道資料
+    function ShowStreet() {
+        var c_city = $("select[id='city'] option:selected").text()
+        var aR_no = $("select[id='region_select']").val()
+        var r_region = $("select[id='region_select'] option:selected").text()
+        var t_url = "/Ajax/getStreet" 
+        var sR_no = aR_no.toString()
+        
+        var selected = ''
+        selector = document.getElementById("street")
+        $.ajax({
+            url: t_url,
+            type: "POST",
+            data: {
+                "r_no": sR_no,
+            },
+            dataType: 'json',
+            success: function (res) {
+                $('#street').css('display', '')
+                $('#street_select').html('')
+                
+                elem1 = "<option class='fw-bold' value='' selected><-- 無街道 --></option><option class='fw-bold' value='all'> 所有街道 </option>"
+                elem0 = ""
+                res.forEach(e => {
+                    elem2 = "<option value='"+ e['s_no'] +"'>"+ e['s_name'] +"</option>"
+                    elem0 += elem2
+                })
+                $('#street_select').append(elem1 + elem0)
+            }
+        })
+    }
+
+    function toggle(source) {
+        checkboxes = document.getElementsByName('search_key');
+        for(var i=0, n=checkboxes.length; i<n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+
+</script>
+
+{% endblock %}

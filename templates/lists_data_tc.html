@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}清單任務條件管理{% endblock %}
+
+{% block body %}
+<!-- 導行列 -->
+<nav class="mt-3"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Index</a></li>
+        <li class="breadcrumb-item active" aria-current="page">任務條件管理</li>
+    </ol>
+</nav>
+
+<!-- 搜尋 -->
+<div class="container-fluid">
+    <form name="search-form" ENCTYPE="multipart/form-data" method="post"
+        action="/ListsDataTc?&action=search&page={{page}}&items={{items}}&order=l_tc_no&sort={{sort}}&search={{search_options}}&search_key={{search_key}}">
+        <select name="s_terms" id="s_terms">
+            <option value="All" id="s_terms-0" {% if search_options=='All' %} selected{% endif %}>顯示全部</option>
+            <option value="l_tc_no" id="s_terms-1" {% if search_options=='l_tc_no' %} selected{% endif %}>任務條件序號
+            </option>
+            <option value="project_no" id="s_terms-2" {% if search_options=='project_no' %} selected{% endif %}>
+                專案序號
+            </option>
+        </select>
+        <span class="input-icon">
+            <input type="text" style="margin:0;" name="s_key" id="nav-search-input" aria-controls="table_report"
+                placeholder="Search ..." autocomplete="off" value={{search_key}}>
+            <i class="icon-search" id="nav-search-icon"></i>
+        </span>
+    </form>
+</div>
+
+<!--Flash 語法-->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+    var messages = {{ messages | safe }};
+    for (var i = 0; i < messages.length; i++) {
+        alert(messages[i]);
+    }
+</script>
+{% endif %}
+{% endwith %}
+
+<div class="row-fluid mt-3">
+    <div id="table_report_length" class="dataTables_length">
+        <lable>
+            Display
+            <select size="1" id="select_page_items" onChange="relocate(this);">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="90">90</option>
+                <option value="100">100</option>
+            </select>
+
+            <script>
+                var _userPageItems = {{ items }};
+                for (var i = 0; i < document.getElementById("select_page_items").options.length; i++) {
+                    if (document.getElementById("select_page_items").options[i].value == _userPageItems) {
+                        document.getElementById("select_page_items").selectedIndex = i;
+                        break;
+                    }
+                }
+                function relocate(obj) {
+                    var val = obj.options[obj.selectedIndex].value;
+                    var url_string = "ListsDataTc?page=1";
+                    var loc = url_string + '&items=' + val + "&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}";
+                    document.location = loc;
+                }
+            </script>
+            records
+        </lable>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <table class="table table-striped text-center table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">專案組別</th>
+                    <th scope="col">清單任務條件</th>
+                    <th scope="col">最後修改</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">
+                        <a href="/ListsDataTc?action=add&l_tc_no=0" type="button"
+                            class="btn btn-outline-primary btn-sm">新增清單任務條件</a>
+                        <a href="/ListsDataTc?action=generate_task&l_tc_no=0" id="generate_task_all" type="button"
+                            class="btn btn-outline-primary btn-sm">產生所有任務</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aListsData, project_no in zip(aListsDataTc, aProject_no) %}
+                <tr class="{% if project_no|int % 2==0 %} table-success {% else %} table-light {% endif %}">
+                    <th scope="row" name="l_tc_no[]" id="l_tc_no_{{aListsData['l_tc_no']}}">{{ aListsData['l_tc_no'] }}</th>
+                    <td>
+                        {% for Project in aProject %}
+                        {% if project_no|int == Project['project_no'] %}
+                        {{ Project['project_name'] }}
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="text-truncate" style="max-width:550px" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" title="Tooltip">{{ aListsData['project_tc'] }}</td>
+                    <td>{{ aListsData['modified'] }}</td>
+                    <td>
+                        {% if aListsData['status'] == 2 %}
+                        已完成
+                        {% elif aListsData['status'] == 1 %}
+                        已生成
+                        {% else %}
+                        未生成
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/ListsDataTc?action=generate_task&l_tc_no={{ aListsData['l_tc_no'] }}"
+                            class="btn btn-sm btn-outline-secondary" id="generate_task_{{aListsData['l_tc_no']}}"
+                            type="button">生成任務</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row-fluid mb-5">
+        <div class="d-flex flex-row-reverse">
+            <div class="dataTables_info mb-5 " id="table_report_info">
+                Showing {{ colstart }} to {{ entries }} entries of {{ count }}
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <div class="">
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item" {{FirstPageStyle}}>
+                            <a class="page-link"
+                                href="/ListsDataTc?page=1&items={{items}}&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}">第一頁</a>
+                        </li>
+                        <li class="page-item" {{FirstPageStyle}}>
+                            <a class="page-link"
+                                href="/ListsDataTc?page={{pageprev}}&items={{items}}&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {%for i in range(pagestart, pageend)%}
+                        <li class="page-item  {% if i == page %}active {% endif %}">
+                            <a class="page-link"
+                                href="/ListsDataTc?page={{i}}&items={{items}}&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}">{{i}}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="page-item" {{LastPageStyle}}>
+                            <a class="page-link"
+                                href="/ListsDataTc?page={{pagenext}}&items={{items}}&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item" {{LastPageStyle}}>
+                            <a class="page-link"
+                                href="/ListsDataTc?page={{lastpage}}&items={{items}}&order={{order}}&sort={{sort}}&search={{search_options}}&search_key={{search_key}}">最後一頁
+                            </a>
+                        </li>
+                        <li>
+                            <a> Page {{page}} of {{lastpage}} </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block javascript %}
+    <script>
+        $(document).ready(function () {
+            check_data_status()
+            // 待ajax完成重新讀取『產生任務』
+            $(document).ajaxComplete(function () {
+                var aL_tc_no = get_all_no()
+                var chk_num = 0
+
+                aL_tc_no.forEach(e => {
+                    var l_tc_no_elem = document.getElementById('generate_task_' + e)
+
+                    if ((l_tc_no_elem.className).includes('disabled')) {
+                        chk_num += 1
+                    }
+                })
+
+                if (chk_num == aL_tc_no.length) {
+                    $("#generate_task_all").addClass('disabled')
+                }
+            })
+        })
+
+        function check_data_status() {
+            // 確認任務條件狀態
+            var aL_tc_no = get_all_no()
+            var t_url = "/Ajax/check_data_status"
+            var data = {
+                "target_no": aL_tc_no,
+                "no_name": 'l_tc_no',
+                "table": 'lists_data_tc'
+            }
+
+            $.ajax({
+                url: t_url,
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (res) {
+                    res.forEach(e => {
+                        // 更改產生任務狀態
+                        if (e['status'] != 0) {
+                            $('#generate_task_' + e['no']).addClass('disabled')
+                        }
+                    })
+                }
+            })
+        }
+
+        function get_all_no() {
+            // 取得頁面所有l_tc_no
+            var l_tc_no_elem = document.getElementsByName('l_tc_no[]')
+            var t_url = "/Ajax/check_data_status"
+            var aL_tc_no = []
+
+            l_tc_no_elem.forEach(e => {
+                aL_tc_no.push(e.textContent)
+            })
+            return aL_tc_no
+        }
+
+        // 取得tooltip elems
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        // 顯示用陣列
+        var show_info_arr = []
+
+        tooltipTriggerList.forEach(element => {
+            // 拆解各lists_data_tc資料,寫入tooltip array中
+
+            var info = {}
+            var sc_info = JSON.parse(element.textContent)   // read JSON data
+
+            sc_info['sc_search_key'].forEach(sc_search_key => {
+                var search_key_tmp = []
+                search_key_tmp.push(sc_search_key)
+                search_key = search_key_tmp.join()
+            })
+
+            var city_tmp = []
+            var region_tmp = []
+            sc_info['sc_location'].forEach(sc_location => {
+                if (!(city_tmp.includes(sc_location['sc_city']))) {
+                    city_tmp.push(sc_location['sc_city'])
+                    city_tmp.join('-')
+                }
+
+                if (!(region_tmp.includes(sc_location['sc_region']))) {
+                    region_tmp.push(sc_location['sc_region'])
+                    region_tmp.join('-')
+                }
+            })
+
+            // tooltip 顯示文字
+            element.setAttribute('title', '產業: ' + sc_info['sc_industry'] + '\n' + '關鍵字: ' + search_key + '\n' + '--------------------\n' + '縣市:' + city_tmp + '\n' + '行政區: ' + region_tmp)
+            // element.setAttribute('data-bs-custom-class', 'custom-tooltip')
+            // element.tooltip.style.color = '#aeb4d8' 
+            // background - color: #aeb4d8!important;
+            // box - shadow: 0px 4px #aeb4d8!important;
+            // opacity: 1!important;
+            // str_info = JSON.stringify(info)
+            // str_info_arr.push(str_info)
+        })
+
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl, { html: true })
+        })
+    </script>
+    {% endblock %}

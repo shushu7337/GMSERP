@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}User Page{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+<!-- datepicker -->
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+    
+{% endblock %}
+
+
+<!-- body -->
+{% block body %}
+<nav class="mt-5"
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../">Index</a></li>
+        <li class="breadcrumb-item"><a href="/Project">專案管理</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% if project_no == 0 %}新增{% else %}編輯{% endif %}</li>
+    </ol>
+</nav>
+
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_no">專案編號</span>
+        <input readonly type="text" class="form-control" placeholder="自動產生" value="{% if aProject['project_no'] %}{{aProject['project_no']}}{% endif %}" name="project_no" >
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_name">專案名稱</span>
+        <input type="text" class="form-control" placeholder="請輸入專案名稱" value="{% if aProject['project_name'] %}{{aProject['project_name']}}{% endif %}" name="project_name" >
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_desc">專案描述</span>
+        <input type="text" class="form-control" placeholder="請輸入專案描述" value="{% if aProject['project_desc'] %}{{aProject['project_desc']}}{% endif %}" name="project_desc" >
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_industry">產業</span>
+        <select name="industry_no" id="industry" class="form-select">
+            {% if aProject['industry_no'] %}
+                {% for allIndustry in aAllIndustry %}
+                <option value="{{allIndustry['industry_no']}}" {% if aProject['industry_no']==allIndustry['industry_no'] %} selected{% endif %}>{{ allIndustry['industry_name'] }}
+                </option>
+                {% endfor %}
+            {% else %}
+                <option><--請選擇產業--></option>
+                {% for allIndustry in aAllIndustry %}
+                <option value="{{allIndustry['industry_no']}}">{{ allIndustry['industry_name'] }}
+                </option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_datetime">專案啟用日期</span>
+        <input id="datetimepicker" type="text" class="form-control" placeholder="請輸入專案日期" value="{% if aProject['s_date'] %}{{aProject['s_date']}}{% endif %}" name="s_date" {% if aProject['s_date'] %} readonly {%endif%}>
+    </div>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="project_status">啟用狀態</span>
+        <div class="form-check form-check-inlin mt-2">
+            <input id="status-0" type="radio" class="for-check-input" value="0" name="status" {% if aProject['status'] == 0 %}checked{% endif %}>
+            <label for="status-0" class="form-check-label">未啟用</label>
+
+            <input id="status-1" type="radio" class="for-check-input" value="1" name="status" {% if aProject['status'] in [1,2] %}checked{% endif %}>
+            <label for="status-1" class="form-check-label">啟用</label>
+
+            <input id="status-3" type="radio" class="for-check-input" value="3" name="status" {% if aProject['status'] == 3 %}checked{% endif %}>
+            <label for="status-3" class="form-check-label">已匯入</label>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
+        <button type="submit" class="btn btn-outline-secondary">送出</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary">清除</button>
+        &nbsp; &nbsp; &nbsp;
+        <button type="reset" class="btn btn-outline-secondary" onclick="window.history.go(-1)">取消</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<!-- datepicker -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+<script src="http://cdn.craig.is/js/rainbow-custom.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.datetimepicker.setLocale('pt-EN');
+        $('#datetimepicker').datetimepicker({
+            format:'Y/m/d H:i:s'
+        });
+    });
+</script>
+
+{% endblock %}
